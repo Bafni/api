@@ -44,7 +44,7 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts' ], function () {
             Route::post('/{post}', 'UpdateController');
     });
     /*Вище контролер можна зробити методом patch і обновляти
-    без Зображення бо метод patch щось не хлче загружати файли*/
+    без Зображення бо метод patch щось не хоче загружати файли*/
       /*Route::post('/{post}', 'UploadImageController');*/
     /*тут окрема реалізація загрузки картинки але
     // вище контроллер мусить бути patch*/
