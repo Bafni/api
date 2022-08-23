@@ -55,4 +55,7 @@ Route::group(['namespace' => 'Taxonomy', 'prefix' => 'taxonomy',], function () {
     Route::post('/', 'StoreController');
     Route::patch('/{taxonomy}', 'UpdateController');
 });
+Route::group(['namespace' => 'Mail', 'prefix' => 'mail',], function () {
+    Route::post('/', 'MailController');
+});
 
