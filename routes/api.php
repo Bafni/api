@@ -43,12 +43,16 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts' ], function () {
             Route::post('/', 'StoreController');
             Route::post('/{post}', 'UpdateController');
     });
-
     /*Вище контролер можна зробити методом patch і обновляти
     без Зображення бо метод patch щось не хлче загружати файли*/
       /*Route::post('/{post}', 'UploadImageController');*/
     /*тут окрема реалізація загрузки картинки але
     // вище контроллер мусить бути patch*/
 });
-
+Route::group(['namespace' => 'Taxonomy', 'prefix' => 'taxonomy',], function () {
+    Route::get('/', 'IndexController');
+    Route::get('/{taxonomy}', 'ShowController');
+    Route::post('/', 'StoreController');
+    Route::patch('/{taxonomy}', 'UpdateController');
+});
 
