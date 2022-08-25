@@ -31,7 +31,6 @@ class SendMessageEventHandler implements ShouldQueue
      */
     public function handle(SendMessageEvent $event)
     {
-        Log::alert('SendMessageEventHandler');
         $file = Storage::get('mail/mail_list.txt');
         preg_match_all('#(id-(?<id>\d+))\,((date_queue-(?<date_queue>(\d{4})-(\d{2})-(\d{2}).(\d{2}):(\d{2})))\,setting_id-(?<setting_id>[0-9]+))\,(user_id-(?<user_id>[0-9]+))#', $file, $match);
         $count = count($match['date_queue']);

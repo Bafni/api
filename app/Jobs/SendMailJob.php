@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Mail;
 class SendMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     /**
      * Create a new job instance.
      *

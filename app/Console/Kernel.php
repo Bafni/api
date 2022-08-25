@@ -4,16 +4,8 @@ namespace App\Console;
 
 use App\Console\Commands\SendEmails;
 use App\Events\SendMessageEvent;
-use App\Mail\SendMail;
-use App\Models\Post;
-use App\Models\Setting;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class Kernel extends ConsoleKernel
 {
@@ -35,7 +27,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('send:mail',)->everyMinute();*/
 
        $schedule->call(function () {
-           Log::alert('run schedule');
            SendMessageEvent::dispatch();
                  })->description('Send Mail')->everyMinute();
     }
