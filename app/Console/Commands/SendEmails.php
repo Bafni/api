@@ -6,7 +6,9 @@ use App\Http\Controllers\Mail\MailController;
 use App\Mail\SendMail;
 use App\Models\Post;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class SendEmails extends Command
@@ -42,7 +44,7 @@ class SendEmails extends Command
      */
     public function handle()
     {
-        dd('1111111');
-        dump('1111111');
+
+       Log::alert('Genadii +');
     }
 }

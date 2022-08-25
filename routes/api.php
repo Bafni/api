@@ -58,12 +58,6 @@ Route::group(['namespace' => 'Taxonomy', 'prefix' => 'taxonomy'], function () {
 });
 Route::group(['namespace' => 'Mail', 'prefix' => 'mail'], function () {
     Route::post('/', 'MailController')->name('send_mail');
-    Route::post('/name', function (){
-        DB::table('test')->insert([
-            'name' => 'Ivan'
-        ]);
-        return '1111';
-    });
 });
 Route::group(['namespace' => 'Setting', 'prefix' => 'setting'], function () {
     Route::get('/', 'IndexController');

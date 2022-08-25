@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\SendMessageEvent;
+use App\Events\RecordSettingsEvent;
+use App\Events\TestEvent;
+use App\Listeners\RecordSettingsEventHandler;
+use App\Listeners\TestEventListnerHendler;
+use App\Listeners\SendMessageEventHandler;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +22,15 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        TestEvent::class =>[
+            TestEventListnerHendler::class,
+        ],
+        RecordSettingsEvent::class =>[
+            RecordSettingsEventHandler::class,
+        ],
+        SendMessageEvent::class =>[
+            SendMessageEventHandler::class,
         ],
     ];
 
