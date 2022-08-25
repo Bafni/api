@@ -21,6 +21,7 @@ class SendMailJob implements ShouldQueue
      *
      * @return void
      */
+    public $delay = 10;
     public $user;
     public $post;
     public $value;

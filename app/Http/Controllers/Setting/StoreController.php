@@ -15,13 +15,12 @@ class StoreController extends Controller
         $data = $request->validated();
         $data['data'] = json_encode($data['data']);
         $data = Setting::create($data);
-        for ($i = 0; $i < 50; $i++) {
-            $data['id'] = $data['id'] + 1 ;
+/*        for ($i = 0; $i < 50; $i++) {
+            $data['id'] = $data['id'] + 1 ;*/
             RecordSettingsEvent::dispatch($data);
-        }
+    /*    }*/
 
 
         return new SettingResource($data);
-
     }
 }
