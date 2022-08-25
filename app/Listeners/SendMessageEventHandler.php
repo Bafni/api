@@ -61,6 +61,7 @@ class SendMessageEventHandler implements ShouldQueue
                 //стираємо з бази надісланий сетінг
                // Setting::where('id',$value['id'])->delete();
                /* dump('Successful' . ' - ' . $user->email);*/
+
             }
         }
     }
