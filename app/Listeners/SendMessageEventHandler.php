@@ -53,7 +53,7 @@ class SendMessageEventHandler implements ShouldQueue
             {
                 $user = User::find($value['user_id']);
                 $post = Post::find(2);
-                SendMailJob::dispatch($user, $post, $value, $file);
+                SendMailJob::dispatch($user, $post, $value, $file)->delay(60);
                /* Mail::to($user->email)->send(new SendMail(Post::find(2)));*/
                 //стираємо зі списку mail_list.txt відправений сетінг
                // $file =  preg_replace('/[\r\n]+/s',"\n", preg_replace("/".$value['string']."/",'', $file));

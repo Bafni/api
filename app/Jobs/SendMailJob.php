@@ -21,7 +21,6 @@ class SendMailJob implements ShouldQueue
      *
      * @return void
      */
-    public $delay = 10;
     public $user;
     public $post;
     public $value;
@@ -33,6 +32,7 @@ class SendMailJob implements ShouldQueue
         $this->post = $post;
         $this->value = $value;
         $this->file = $file;
+
     }
 
     /**
