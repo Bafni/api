@@ -5,7 +5,7 @@ namespace App\Http\Requests\Setting;
 use App\Http\Requests\ApiFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends ApiFormRequest
+class UpdateRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class StoreRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',
+            'user_id' => 'integer|exists:users,id',
             'setting_type' => 'string|nullable',
             'date_queue' => 'date',
             'data' =>'',

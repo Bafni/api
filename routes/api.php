@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,13 +50,25 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts' ], function () {
     /*тут окрема реалізація загрузки картинки але
     // вище контроллер мусить бути patch*/
 });
-Route::group(['namespace' => 'Taxonomy', 'prefix' => 'taxonomy',], function () {
+Route::group(['namespace' => 'Taxonomy', 'prefix' => 'taxonomy'], function () {
     Route::get('/', 'IndexController');
     Route::get('/{taxonomy}', 'ShowController');
     Route::post('/', 'StoreController');
     Route::patch('/{taxonomy}', 'UpdateController');
 });
-Route::group(['namespace' => 'Mail', 'prefix' => 'mail',], function () {
-    Route::post('/', 'MailController');
+Route::group(['namespace' => 'Mail', 'prefix' => 'mail'], function () {
+    Route::post('/', 'MailController')->name('send_mail');
+    Route::post('/name', function (){
+        DB::table('test')->insert([
+            'name' => 'Ivan'
+        ]);
+        return '1111';
+    });
 });
+Route::group(['namespace' => 'Setting', 'prefix' => 'setting'], function () {
+    Route::get('/', 'IndexController');
+    Route::get('/{setting}', 'ShowController');
+    Route::post('/', 'StoreController');
+    Route::patch('/{setting}', 'UpdateController');
 
+});

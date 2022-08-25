@@ -16,9 +16,10 @@ class MailController extends Controller
 
             Mail::to('reclamabafni@gmail.com')->send(new SendMail($post));
 
-        return response()->json([
+/*        return response()->json([
             "send" => 'Successfully!'
-        ]);
+        ]);*/
+        dd('1111');
 
     }
 }
