@@ -8,27 +8,14 @@ use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class SendMessageEventHandler implements ShouldQueue
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
     }
-
-    /**
-     * Handle the event.
-     *
-     * @param  \App\Events\SendMessageEvent  $event
-     * @return void
-     */
     public function handle(SendMessageEvent $event)
     {
         $file = Storage::get('mail/mail_list.txt');
@@ -36,9 +23,7 @@ class SendMessageEventHandler implements ShouldQueue
         $count = count($match['date_queue']);
         $arrays = [];
         for ($i = 0; $i < $count; $i++) {
-            $arrays [
-            $match['setting_id'][$i]
-            ] =
+            $arrays [$match['setting_id'][$i]] =
                 [
                     'id' => $match['id'][$i],
                     'user_id' => $match['user_id'][$i],
@@ -47,21 +32,11 @@ class SendMessageEventHandler implements ShouldQueue
                 ];
         }
         $date = Carbon::now()->timezone('Europe/Kiev')->format('Y-m-d H:i');
-        foreach ($arrays as $key => $value)
-        {
-            if (strtotime($date) == strtotime($value['date_queue']))
-            {
+        foreach ($arrays as $key => $value) {
+            if (strtotime($date) == strtotime($value['date_queue'])) {
                 $user = User::find($value['user_id']);
                 $post = Post::find(2);
-                SendMailJob::dispatch($user, $post, $value, $file)->delay(60);
-               /* Mail::to($user->email)->send(new SendMail(Post::find(2)));*/
-                //стираємо зі списку mail_list.txt відправений сетінг
-               // $file =  preg_replace('/[\r\n]+/s',"\n", preg_replace("/".$value['string']."/",'', $file));
-              //  Storage::put('mail/mail_list.txt', $file);
-                //стираємо з бази надісланий сетінг
-               // Setting::where('id',$value['id'])->delete();
-               /* dump('Successful' . ' - ' . $user->email);*/
-
+                SendMailJob::dispatch($user, $post, $value, $file);
             }
         }
     }
